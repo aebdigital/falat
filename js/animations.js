@@ -7,6 +7,9 @@ export function initAnimations() {
 }
 
 function initScrollAnimations() {
+    // Prevent zoom on mobile during animations
+    const isMobile = window.innerWidth <= 768;
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -15,8 +18,8 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                // Use CSS classes instead of direct style manipulation to prevent mobile zoom
+                entry.target.classList.add('animate-in');
             }
         });
     }, observerOptions);
@@ -27,9 +30,7 @@ function initScrollAnimations() {
     );
     
     animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.classList.add('animate-element');
         observer.observe(el);
     });
 }
@@ -52,7 +53,7 @@ function initCounterAnimations() {
         updateCounter();
     }
 
-    // Hero stats observer
+    // Hero stats observer with mobile-friendly threshold
     const heroStatsObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -61,13 +62,18 @@ function initCounterAnimations() {
                     const numberElement = stat.childNodes[0] || stat;
                     const target = parseInt(numberElement.textContent);
                     if (!isNaN(target)) {
+                        // Prevent potential zoom issues during counter animation
+                        stat.style.willChange = 'contents';
                         animateCounter(numberElement, target);
+                        setTimeout(() => {
+                            stat.style.willChange = 'auto';
+                        }, 2100);
                     }
                 });
                 heroStatsObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: window.innerWidth <= 768 ? 0.3 : 0.5 });
 
     // About stats observer
     const aboutStatsObserver = new IntersectionObserver(function(entries) {

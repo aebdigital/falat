@@ -10,6 +10,9 @@ import { initPortfolio } from './portfolio.js?v=3.0';
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Main.js ES6 modules loaded successfully');
 
+    // Set viewport height for mobile devices first
+    setViewportHeight();
+
     // Initialize Lenis smooth scroll first
     initLenisScroll();
 
@@ -31,6 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
     initPageLoader();
     initButtonTextRoll();
 });
+
+// Set viewport height for mobile devices to account for browser UI
+function setViewportHeight() {
+    function updateViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    // Set initial value
+    updateViewportHeight();
+
+    // Update on resize and orientation change
+    window.addEventListener('resize', updateViewportHeight);
+    window.addEventListener('orientationchange', () => {
+        // Delay for orientation change to complete
+        setTimeout(updateViewportHeight, 100);
+    });
+}
 
 // Page loader - smooth fade in on load
 function initPageLoader() {

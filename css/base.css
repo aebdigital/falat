@@ -34,6 +34,30 @@
 
 html {
     overflow-x: hidden;
+    /* Fix for mobile viewport height */
+    --vh: 1vh;
+}
+
+/* Mobile viewport height fix */
+@supports (-webkit-touch-callout: none) {
+    html {
+        /* iOS Safari */
+        --vh: 1dvh;
+    }
+}
+
+/* Prevent zoom on mobile during animations */
+@media (max-width: 768px) {
+    * {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Allow text selection where needed */
+    p, span, h1, h2, h3, h4, h5, h6, a {
+        -webkit-user-select: text;
+    }
 }
 
 html.lenis {
@@ -58,14 +82,30 @@ html.lenis {
 
 body {
     font-family: var(--font-family);
+    /* Prevent mobile zoom */
+    -webkit-text-size-adjust: 100%;
     line-height: var(--line-height);
     color: var(--text-color);
     background-color: var(--background-color);
     overflow-x: hidden;
-    min-height: 100vh;
+    min-height: calc(var(--vh) * 100);
     position: relative;
     opacity: 0;
     animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Animation classes for mobile-safe animations */
+.animate-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+
+.animate-element.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
 }
 
 @keyframes fadeIn {
