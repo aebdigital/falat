@@ -38,11 +38,27 @@ html {
     --vh: 1vh;
 }
 
-/* Mobile viewport height fix */
+/* Mobile viewport height fix - use the largest stable viewport */
+@supports (height: 100lvh) {
+    html {
+        /* Use large viewport height (excludes mobile browser UI) */
+        --vh: 1lvh;
+    }
+}
+
 @supports (-webkit-touch-callout: none) {
     html {
-        /* iOS Safari */
-        --vh: 1dvh;
+        /* iOS Safari - try to use largest viewport */
+        --vh: 1lvh;
+    }
+}
+
+/* Force stable viewport on mobile */
+@media (max-width: 768px) {
+    html {
+        /* Force fullscreen behavior */
+        height: 100lvh;
+        overflow: hidden auto;
     }
 }
 

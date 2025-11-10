@@ -37,19 +37,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Set viewport height for mobile devices to account for browser UI
 function setViewportHeight() {
+    let initialViewportHeight = window.innerHeight;
+    
     function updateViewportHeight() {
-        const vh = window.innerHeight * 0.01;
+        // Use the larger viewport (excluding browser UI) when available
+        const vh = window.visualViewport ? 
+            window.visualViewport.height * 0.01 : 
+            window.innerHeight * 0.01;
+        
         document.documentElement.style.setProperty('--vh', `${vh}px`);
+        
+        // Force scroll to hide browser bar on first load
+        if (window.innerHeight !== initialViewportHeight) {
+            // Browser bar appeared/disappeared, force it to stay hidden
+            setTimeout(() => {
+                window.scrollTo(0, 1);
+                setTimeout(() => window.scrollTo(0, 0), 50);
+            }, 100);
+        }
     }
 
     // Set initial value
     updateViewportHeight();
+    
+    // Force hide browser bar initially
+    setTimeout(() => {
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+            updateViewportHeight();
+        }, 100);
+    }, 500);
 
-    // Update on resize and orientation change
-    window.addEventListener('resize', updateViewportHeight);
+    // Listen to visual viewport changes (better than resize)
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', updateViewportHeight);
+    } else {
+        // Fallback for older browsers
+        window.addEventListener('resize', updateViewportHeight);
+    }
+    
     window.addEventListener('orientationchange', () => {
         // Delay for orientation change to complete
-        setTimeout(updateViewportHeight, 100);
+        setTimeout(() => {
+            updateViewportHeight();
+            // Force hide browser bar after orientation change
+            setTimeout(() => {
+                window.scrollTo(0, 1);
+                setTimeout(() => window.scrollTo(0, 0), 50);
+            }, 200);
+        }, 100);
     });
 }
 
