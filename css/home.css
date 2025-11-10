@@ -1438,8 +1438,8 @@
         align-items: center;
         gap: 30px;
         padding: 0 0 40px;
-        max-width: 100%;
-        width: 100%;
+        max-width: 90%;
+        width: 90%;
         min-height: auto;
     }
 
