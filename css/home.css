@@ -22,6 +22,19 @@
     will-change: transform;
 }
 
+/* Disable parallax optimization on mobile */
+@media (max-width: 768px) {
+    .hero-background {
+        will-change: auto;
+        transform: none !important;
+    }
+    
+    .hero {
+        /* Ensure hero stays fixed on mobile */
+        position: fixed;
+    }
+}
+
 .hero-bg-image {
     position: absolute;
     top: 0;

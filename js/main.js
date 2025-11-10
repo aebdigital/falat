@@ -119,10 +119,17 @@ function initTestimonials() {
 }
 
 
-// Hero parallax effect - background moves 20% while content stays fixed
+// Hero parallax effect - disabled on mobile for better performance
 function initHeroParallax() {
     const heroBackground = document.querySelector('.hero-background');
     if (!heroBackground) return;
+
+    // Disable parallax on mobile devices
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        console.log('Parallax disabled on mobile device');
+        return;
+    }
 
     window.addEventListener('scroll', function() {
         const scrolled = window.scrollY;
