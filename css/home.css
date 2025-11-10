@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(var(--vh) * 100);
+    height: 90vh;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -27,13 +27,13 @@
     .hero-background {
         will-change: auto;
         transform: none !important;
-        height: calc(var(--vh) * 100) !important;
+        height: 90vh !important;
     }
     
     .hero {
         /* Ensure hero stays fixed on mobile */
         position: fixed;
-        height: calc(var(--vh) * 100);
+        height: 90vh !important;
         overflow: hidden;
         /* Align content to bottom on mobile */
         display: flex;
@@ -546,7 +546,7 @@
     background: #fff;
     position: relative;
     z-index: 2;
-    margin-top: calc(var(--vh) * 100);
+    margin-top: 90vh;
 }
 
 .about-content {
