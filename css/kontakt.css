@@ -1,8 +1,8 @@
 /* Map Section */
 .map-section {
     position: relative;
-    height: 60vh;
-    min-height: 400px;
+    height: 42vh;
+    min-height: 280px;
 }
 
 .map-container {
@@ -167,7 +167,7 @@
 
 /* Contact Form Right */
 .contact-form-right {
-    background: #1a1a1a;
+    background: #2d2418;
     color: white;
     padding: 60px;
     display: flex;
@@ -196,6 +196,8 @@
     padding: 15px;
     color: white;
     font-size: 1rem;
+    font-family: 'PP Neue Montreal', 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
     transition: border-color 0.3s ease;
 }
 
@@ -229,6 +231,7 @@
     padding: 15px 30px;
     border-radius: 4px;
     font-size: 1rem;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
     align-self: flex-start;
@@ -237,7 +240,7 @@
 
 .form-submit-btn:hover {
     background: white;
-    color: #1a1a1a;
+    color: #2d2418;
 }
 
 .privacy-link {

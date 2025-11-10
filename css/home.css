@@ -1,20 +1,25 @@
 /* Hero Section */
 .hero {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100vh;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
     color: white;
+    z-index: 0;
 }
 
 .hero-background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -2;
+    will-change: transform;
 }
 
 .hero-bg-image {
@@ -66,7 +71,7 @@
     line-height: 1.1;
     margin-bottom: 20px;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    max-width: 650px;
+    max-width: 680px;
 }
 
 /* Hero Text Slider */
@@ -154,12 +159,12 @@
 }
 
 .cta-btn.primary {
-    background: #666666;
+    background: #af937a;
     color: white;
 }
 
 .cta-btn.primary:hover {
-    background: #0056b3;
+    background: black;
     transform: translateY(-2px);
 }
 
@@ -172,6 +177,66 @@
 .cta-btn.secondary:hover {
     background: white;
     color: #333;
+}
+
+/* Sliding text effect for all buttons */
+.btn_default_wrap {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px 10px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-family: 'PP Neue Montreal', 'Inter', system-ui, -apple-system, sans-serif;
+    overflow: visible;
+    text-decoration: none;
+    border: none;
+    border-radius: 0;
+}
+
+
+/* Primary button with sliding text */
+.btn_default_wrap.primary {
+    background: #af937a;
+    color: white;
+}
+
+.btn_default_wrap.primary .btn_default_text::before,
+.btn_default_wrap.primary .btn_default_text::after {
+    color: white;
+}
+
+.btn_default_wrap.primary:hover {
+    background: black;
+}
+
+/* Secondary button with sliding text */
+.btn_default_wrap.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn_default_wrap.secondary .btn_default_text::before,
+.btn_default_wrap.secondary .btn_default_text::after {
+    color: white;
+}
+
+.btn_default_wrap.secondary:hover {
+    background: white;
+    color: #333;
+}
+
+.btn_default_wrap.secondary:hover .btn_default_text::before,
+.btn_default_wrap.secondary:hover .btn_default_text::after {
+    color: #333;
+}
+
+.g_circle {
+    display: none;
 }
 
 .hero-right {
@@ -258,7 +323,7 @@
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    background: #666666;
+    background: #af937a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -289,7 +354,7 @@
 }
 
 .rating-stars {
-    color: #999999;
+    color: #c9b39d;
 }
 
 .rating-score {
@@ -312,11 +377,81 @@
     opacity: 1;
 }
 
+/* Services Grid Layout (from produkty-sluzby page) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+   
+}
+
+.service-grid-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1.25;
+    transition: transform 0.3s ease;
+}
+
+.service-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.service-overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.service-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.service-grid-item:hover .service-overlay img {
+    transform: scale(1.1);
+}
+
+.service-overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 3rem 2rem 2rem;
+    color: white;
+}
+
+.service-grid-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    line-height: 1.2;
+}
+
+.service-grid-description {
+    font-size: 16px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+    margin: 0;
+}
+
 /* Partners Slider */
 .partners-slider {
     padding: 40px 0 60px;
     background: white;
     overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 .slider-container {
@@ -361,6 +496,9 @@
 .about {
     padding: 100px 0;
     background: #fff;
+    position: relative;
+    z-index: 2;
+    margin-top: 100vh;
 }
 
 .about-content {
@@ -373,7 +511,6 @@
 .about-left {
     display: flex;
     flex-direction: column;
-    gap: 40px;
 }
 
 .about-header {
@@ -383,7 +520,7 @@
 }
 
 .about-label {
-    color: #666666;
+    color: #af937a;
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -433,8 +570,9 @@
 }
 
 .about-btn:hover {
-    background: #333;
+    background: #af937a;
     color: white;
+    border: 2px solid transparent;
 }
 
 .about-btn svg {
@@ -453,7 +591,7 @@
     padding: 20px;
     background: rgba(245, 130, 30, 0.05);
     border-radius: 8px;
-    border-left: 4px solid #666666;
+    border-left: 4px solid #af937a;
 }
 
 .cech-logo {
@@ -473,12 +611,12 @@
     margin: 30px 0;
     padding: 25px;
     background: rgba(0, 123, 255, 0.05);
-    border-left: 4px solid #666666;
+    border-left: 4px solid #af937a;
     border-radius: 8px;
 }
 
 .founders-info h4 {
-    color: #666666;
+    color: #af937a;
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 20px;
@@ -571,9 +709,17 @@
 }
 
 /* Services Section */
-.services {
+.services-section {
+    background: white !important;
+    position: relative;
+    z-index: 2;
     padding: 100px 0;
-    background: #f8f9fa;
+}
+
+.services {
+    background: white !important;
+    position: relative;
+    z-index: 2;
 }
 
 .services-header {
@@ -626,8 +772,8 @@
 }
 
 .carousel-btn:hover {
-    background: #666666;
-    border-color: #666666;
+    background: #af937a;
+    border-color: #af937a;
     color: white;
 }
 
@@ -645,7 +791,7 @@
 }
 
 .services-all-btn {
-    background: #666666;
+    background: #af937a;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -661,7 +807,7 @@
 }
 
 .services-all-btn:hover {
-    background: #666666;
+    background: #af937a;
     transform: translateY(-2px);
 }
 
@@ -673,6 +819,8 @@
     padding: 20px 0;
     margin: 40px -20px 0 -20px;
     width: calc(100% + 40px);
+    background: white;
+    z-index: 2;
 }
 
 .services-carousel {
@@ -745,35 +893,31 @@
 }
 
 .service-card:hover::before {
-    border-color: #666666;
+    border-color: #af937a;
     animation: borderMove 2s linear infinite;
 }
 
 @keyframes borderMove {
     0% {
-        border-image: linear-gradient(90deg, #666666 50%, transparent 50%) 1;
+        border-image: linear-gradient(90deg, #af937a 50%, transparent 50%) 1;
         border-image-slice: 1;
     }
     25% {
-        border-image: linear-gradient(180deg, #666666 50%, transparent 50%) 1;
+        border-image: linear-gradient(180deg, #af937a 50%, transparent 50%) 1;
         border-image-slice: 1;
     }
     50% {
-        border-image: linear-gradient(270deg, #666666 50%, transparent 50%) 1;
+        border-image: linear-gradient(270deg, #af937a 50%, transparent 50%) 1;
         border-image-slice: 1;
     }
     75% {
-        border-image: linear-gradient(360deg, #666666 50%, transparent 50%) 1;
+        border-image: linear-gradient(360deg, #af937a 50%, transparent 50%) 1;
         border-image-slice: 1;
     }
     100% {
-        border-image: linear-gradient(90deg, #666666 50%, transparent 50%) 1;
+        border-image: linear-gradient(90deg, #af937a 50%, transparent 50%) 1;
         border-image-slice: 1;
     }
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
 }
 
 .service-number {
@@ -872,6 +1016,8 @@
     padding: 80px 0 100px;
     background: #fff;
     overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 .gallery .section-title {
@@ -976,14 +1122,38 @@
     background: linear-gradient(rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0.8)), url('../sources/pristresky/480988727_1160721905593618_1338831727773942084_n.jpg');
     background-size: cover;
     background-position: center;
-    transition: all 0.3s ease;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.gallery-all-projects::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: #af937a;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease-out, height 0.3s ease-out;
+    z-index: 1;
+}
+
+.gallery-all-projects:hover::before {
+    width: 150%;
+    height: 150%;
 }
 
 .gallery-all-projects:hover {
     transform: scale(1.03);
-    background: linear-gradient(rgba(51, 51, 51, 0.9), rgba(51, 51, 51, 0.9)), url('../sources/pristresky/480988727_1160721905593618_1338831727773942084_n.jpg');
-    background-size: cover;
-    background-position: center;
+}
+
+.gallery-all-content {
+    position: relative;
+    z-index: 2;
 }
 
 .gallery-all-link {
@@ -1025,6 +1195,8 @@
 .reviews {
     padding: 100px 0;
     background: #f8f9fa;
+    position: relative;
+    z-index: 2;
 }
 
 .reviews-header {
@@ -1098,7 +1270,7 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: #666666;
+    background: #af937a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1124,7 +1296,7 @@
 
 .reviews-btn {
     display: inline-block;
-    background: #666666;
+    background: #af937a;
     color: white;
     padding: 15px 30px;
     border-radius: 0;
@@ -1146,6 +1318,8 @@
 .process {
     padding: 80px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    z-index: 2;
 }
 
 .process .container {
@@ -1172,9 +1346,6 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.process-step:hover {
-    transform: translateY(-5px);
-}
 
 .step-number {
     position: absolute;
@@ -1199,7 +1370,7 @@
 }
 
 .step-icon svg {
-    color: #333333;
+    color: #af937a;
     width: 28px;
     height: 28px;
 }
@@ -1208,7 +1379,7 @@
 .step-title {
     font-size: 1.4rem;
     font-weight: 600;
-    color: #333333;
+    color: #af937a;
     margin-bottom: 1rem;
     line-height: 1.3;
     position: relative;
@@ -1218,7 +1389,7 @@
 .step-description {
     font-size: 1rem;
     line-height: 1.6;
-    color: #333333;
+    color: #af937a;
     text-align: left;
     position: relative;
     z-index: 2;
@@ -1227,9 +1398,9 @@
 /* Mobile Responsive - All media queries at the end */
 @media (max-width: 768px) {
     .hero {
-        height: 84vh;
+        height: 100vh;
     }
-    
+
     .hero-content {
         flex-direction: column;
         align-items: center;
@@ -1237,12 +1408,12 @@
         padding: 0 0 40px;
         max-width: 90%;
     }
-    
+
     .hero-testimonial,
     .more-testimonials {
         display: none;
     }
-    
+
     .about-stats {
         position: static;
         margin-top: 2rem;
@@ -1252,52 +1423,68 @@
         top: auto;
         transform: none;
     }
-    
+
     h2 {
         font-size: 3.1rem !important;
     }
-    
+
     .hero-title {
         font-size: 2.86rem;
     }
-    
+
     .stat-number {
         font-size: 2.1rem;
     }
-    
+
     .hero-text {
         width: 100%;
         text-align: left;
     }
-    
+
     .about-image {
         height: 250px;
     }
-    
+
     .process .container {
         max-width: 90%;
     }
-    
-    
+
+
     .hero-subtitle-slider {
         margin-bottom: 10px;
     }
-    
+
     .hero-subtitle {
         font-size: 1rem;
     }
-    
+
     .about-content {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: left;
     }
-    
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-overlay-content {
+        padding: 16px;
+    }
+
     .gallery-grid {
         grid-template-columns: 1fr;
         margin: 0;
         width: 100%;
         gap: 10px;
+    }
+
+    .gallery-image-container {
+        height: 250px;
+    }
+
+    .gallery-all-projects {
+        height: 250px;
     }
     
     .process {
@@ -1331,18 +1518,22 @@
 }
 
 @media (max-width: 480px) {
+    .cta-title {
+        font-size: 1.75rem !important;
+    }
+
     .process {
         padding: 50px 0;
     }
-    
+
     .process-step {
         padding: 1.5rem 1rem;
     }
-    
+
     .step-number {
         font-size: 4rem;
     }
-    
+
     .step-title {
         font-size: 1.1rem;
         margin-bottom: 1rem;

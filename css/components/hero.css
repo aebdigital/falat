@@ -6,9 +6,10 @@
     position: relative;
     height: 30vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow: hidden;
+    padding-top: 110px; /* 90px header height + 20px gap */
 }
 
 .hero-bg,
@@ -66,10 +67,15 @@
     .contact-hero {
         height: 18vh;
     }
-    
+
     .hero-title,
     .contact-hero-title {
         font-size: 2.5rem;
+    }
+
+    .hero-section,
+    .contact-hero {
+        padding-top: 90px; /* Slightly less padding on mobile */
     }
 }
 

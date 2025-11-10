@@ -1,17 +1,17 @@
 /* Base Styles - Colors, Typography, and Layout */
 :root {
     /* Color Variables */
-    --primary-color: #333333;
-    --secondary-color: #666666;
+    --primary-color: #af937a;
+    --secondary-color: #af937a;
     --accent-color: #ffffff;
     --background-color: #ffffff;
     --text-color: #333333;
-    --border-color: rgba(128, 128, 128, 0.1);
+    --border-color: rgba(175, 147, 122, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --hover-bg: rgba(255, 255, 255, 0.9);
     
     /* Typography */
-    --font-family: 'Montserrat', sans-serif;
+    --font-family: 'PP Neue Montreal', 'Inter', system-ui, -apple-system, sans-serif;
     --line-height: 1.4;
     
     /* Layout */
@@ -33,7 +33,27 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
 }
 
 body {
@@ -41,7 +61,37 @@ body {
     line-height: var(--line-height);
     color: var(--text-color);
     background-color: var(--background-color);
-    scroll-behavior: smooth;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Page loader overlay */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Container */
@@ -49,6 +99,24 @@ body {
     max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 var(--container-padding);
+}
+
+/* Flip Text Effect for Buttons */
+.flip-btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    perspective: 500px;
+}
+
+.flip-btn span {
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.flip-btn:hover span {
+    transform: rotateX(360deg);
 }
 
 
@@ -66,7 +134,7 @@ body {
 .scroll-progress-bar {
     width: 100%;
     height: 0%;
-    background: var(--secondary-color);
+    background: #af937a;
     transition: height var(--transition-fast);
 }
 
@@ -138,6 +206,35 @@ body {
 
 .btn-primary:hover {
     opacity: 0.9;
+}
+
+/* Sliding text effect with GSAP - Global styles */
+.btn_default_contain {
+    position: relative;
+    display: inline-block;
+}
+
+.btn_default_text {
+    display: inline-block;
+    position: relative;
+}
+
+.roll__viewport {
+    display: block;
+    overflow: hidden;
+    height: 1.5em;
+    line-height: 1.5;
+}
+
+.roll__inner {
+    display: block;
+    will-change: transform;
+}
+
+.roll__line {
+    display: block;
+    color: inherit;
+    white-space: nowrap;
 }
 
 /* Utility Classes */
