@@ -27,6 +27,7 @@
     .hero-background {
         will-change: auto;
         transform: none !important;
+        height: calc(var(--vh) * 100) !important;
     }
     
     .hero {
@@ -34,6 +35,10 @@
         position: fixed;
         height: calc(var(--vh) * 100);
         overflow: hidden;
+        /* Center content properly on mobile */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .hero-bg-image {
@@ -1428,16 +1433,16 @@
 
 /* Mobile Responsive - All media queries at the end */
 @media (max-width: 768px) {
-    .hero {
-        height: 100vh;
-    }
 
     .hero-content {
         flex-direction: column;
         align-items: center;
         gap: 30px;
-        padding: 0 0 40px;
+        padding: 20px 20px 20px;
         max-width: 90%;
+        min-height: auto;
+        /* Center content within available space */
+        justify-content: center;
     }
 
     .hero-testimonial,
