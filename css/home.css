@@ -48,15 +48,8 @@
     }
     
     .hero-stats {
-        /* Ensure stats are always visible on mobile */
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    
-    .hero-stats .stat-number {
-        /* Prevent any animation-related transforms */
-        transform: none !important;
-        will-change: auto !important;
+        /* Hide stats completely on mobile */
+        display: none !important;
     }
 }
 
