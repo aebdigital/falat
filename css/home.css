@@ -32,6 +32,31 @@
     .hero {
         /* Ensure hero stays fixed on mobile */
         position: fixed;
+        height: calc(var(--vh) * 100);
+        overflow: hidden;
+    }
+    
+    .hero-bg-image {
+        /* Prevent any scaling/zooming of background image */
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        transform: none !important;
+        scale: none !important;
+        will-change: auto !important;
+    }
+    
+    .hero-stats {
+        /* Ensure stats are always visible on mobile */
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    .hero-stats .stat-number {
+        /* Prevent any animation-related transforms */
+        transform: none !important;
+        will-change: auto !important;
     }
 }
 
