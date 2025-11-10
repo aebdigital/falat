@@ -35,10 +35,9 @@
         position: fixed;
         height: calc(var(--vh) * 100);
         overflow: hidden;
-        /* Center content properly on mobile */
+        /* Align content to bottom on mobile */
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-end;
     }
     
     .hero-bg-image {
@@ -1438,11 +1437,10 @@
         flex-direction: column;
         align-items: center;
         gap: 30px;
-        padding: 20px 20px 20px;
-        max-width: 90%;
+        padding: 0 0 40px;
+        max-width: 100%;
+        width: 100%;
         min-height: auto;
-        /* Center content within available space */
-        justify-content: center;
     }
 
     .hero-testimonial,
