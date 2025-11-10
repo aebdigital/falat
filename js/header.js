@@ -240,10 +240,15 @@ function updateNavbarBackground() {
     const isInPagesDir = currentPage.includes('/pages/');
     const basePath = isInPagesDir ? '../' : '';
 
-    if (isHomePage) {
-        triggerPoint = window.innerHeight * 0.3;
+    // Use fixed trigger points on mobile to prevent height changes
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Fixed trigger points on mobile to avoid viewport height changes
+        triggerPoint = isHomePage ? 300 : 100;
     } else {
-        triggerPoint = window.innerHeight * 0.1;
+        // Dynamic trigger points on desktop
+        triggerPoint = isHomePage ? window.innerHeight * 0.3 : window.innerHeight * 0.1;
     }
 
     if (scrollPosition > triggerPoint) {
