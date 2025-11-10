@@ -13,13 +13,28 @@ function initHeroSlider() {
     
     if (heroImages.length === 0) return;
     
+    // Disable hero slider on mobile to prevent zoom/stretch issues
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        console.log('Hero image slider disabled on mobile device');
+        // Keep only the first image active on mobile
+        heroImages.forEach((img, index) => {
+            if (index === 0) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+        return;
+    }
+    
     function cycleHeroImages() {
         heroImages[currentImageIndex].classList.remove('active');
         currentImageIndex = (currentImageIndex + 1) % heroImages.length;
         heroImages[currentImageIndex].classList.add('active');
     }
     
-    // Cycle images every 5 seconds
+    // Cycle images every 5 seconds (desktop only)
     setInterval(cycleHeroImages, 5000);
 }
 

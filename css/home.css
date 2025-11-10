@@ -49,6 +49,19 @@
         transform: none !important;
         scale: none !important;
         will-change: auto !important;
+        /* Disable transitions that might cause stretch */
+        transition: none !important;
+    }
+    
+    .hero-bg-image:not(:first-child) {
+        /* Hide all images except the first one on mobile */
+        display: none !important;
+    }
+    
+    .hero-bg-image:first-child {
+        /* Ensure first image is always visible on mobile */
+        opacity: 1 !important;
+        display: block !important;
     }
     
     .hero-stats {
